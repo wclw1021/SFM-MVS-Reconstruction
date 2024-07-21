@@ -1,17 +1,18 @@
 import os
 import cv2
+
 def extract_images(video_path, output_folder):
-    # 获取视频文件名
+    # Get the video file name
     video_name = os.path.splitext(os.path.basename(video_path))[0]
-    # 新建文件夹
+    # Create a new folder
     output_path = os.path.join(output_folder, video_name)
     if not os.path.exists(output_path):
         os.makedirs(output_path)
-    # 打开视频
+    # Open the video
     cap = cv2.VideoCapture(video_path)
-    # 设置帧间隔
+    # Set frame interval
     frame_interval = int(16)
-    # 逐帧提取并保存满足间隔要求的帧
+    # Extract and save frames that meet the interval requirement
     count = 0
     while cap.isOpened():
         ret, frame = cap.read()
@@ -26,6 +27,7 @@ def extract_images(video_path, output_folder):
     cap.release()
 
 if __name__ == '__main__':
-    video_path = 'D:/preprocessing/12.mp4'  # 视频文件路径
-    output_folder = 'D:/preprocessing'  # 输出文件夹路径
+    video_path = 'D:/preprocessing/12.mp4'  # Path to the video file
+    output_folder = 'D:/preprocessing'  # Path to the output folder
     extract_images(video_path, output_folder)
+
